@@ -15,13 +15,15 @@ function getResult(a,b,c){
    let x = [];
    let D = Math.pow(b, 2) - 4*a*c;
 
+
+
    if (D > 0) {
-       x.push[0] = (-b + Math.sqrt(D)) / (2 * a);
-       x.push[1] = (-b - Math.sqrt(D)) / (2 * a);
+       x.push((-b + Math.sqrt(D)) / (2 * a));
+       x.push((-b + Math.sqrt(D)) / (2 * a));
    }
 
    if (D === 0) {
-        x[0] = (-b + Math.sqrt(D)) / (2 * a);
+        x.push((-b + Math.sqrt(D)) / (2 * a));
    }
 
     return x;  
@@ -36,8 +38,9 @@ function calculateAverageRating(){
 
 function getAverageMark(marks){
     // код для задачи №2 писать здесь
-    let sumMark;
-    let averageMark;
+    let sumMark = 0;
+    let averageMark = 0;
+
 
     if (marks.length > 5) {
         console.log('Количество оценок больше 5, в расчет будут приняты только первые 5 оценок');
@@ -50,7 +53,7 @@ function getAverageMark(marks){
         for (let i = 0; i < marks.length; i++) {
             sumMark = marks[i] + sumMark;
         }
-        averageMark = sumMark / 5;
+         averageMark = sumMark / marks.length;
     }
    
     return averageMark;
@@ -72,7 +75,7 @@ function askDrink(name,dateOfBirthday){
 
     if ((now - yearOfBirthday) < 18) {
         result = 'Сожалею, ' + name + ', но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!'
-   } else ((now - yearOfBirthday) >= 18) {
+   } else {
         result = 'Не желаете ли олд-фэшн, ' + name + '?';
    }
 
