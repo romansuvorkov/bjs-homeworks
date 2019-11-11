@@ -38,6 +38,27 @@ function calculateAverageRating(){
 
 function getAverageMark(marks){
     // код для задачи №2 писать здесь
+//     let sumMark;
+//     let averageMark;
+
+
+//     if (marks.length > 5) {
+//         console.log('Количество оценок больше 5, в расчет будут приняты только первые 5 оценок');
+//         marks = marks.slice(0, 5);
+//         for (let i = 0; i < marks.length; i++) {
+//             sumMark = marks[i] + sumMark;
+//         }
+//         averageMark = sumMark / 5;
+//     } else if (marks.length <= 5) {
+//         for (let i = 0; i < marks.length; i++) {
+//             sumMark = marks[i] + sumMark;
+//         }
+//          averageMark = sumMark / marks.length;
+//     }
+   
+//     return averageMark;
+// }
+    
     let sumMark = 0;
     let averageMark = 0;
 
