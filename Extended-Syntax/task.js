@@ -18,12 +18,10 @@ function getResult(a,b,c){
 
 
    if (D > 0) {
-       x.push((-b + Math.sqrt(D)) / (2 * a));
-       x.push((-b - Math.sqrt(D)) / (2 * a));
-   }
-
-   if (D === 0) {
         x.push((-b + Math.sqrt(D)) / (2 * a));
+        x.push((-b - Math.sqrt(D)) / (2 * a));
+   } else if (D === 0) {
+        x.push(-b / (2 * a));
    }
 
     return x;  
@@ -40,7 +38,6 @@ function getAverageMark(marks){
     // код для задачи №2 писать здесь
     
     let sumMark = 0;
-    let averageMark = 0;
 
     if (marks.length > 5) {
         console.log('Количество оценок больше 5, в расчет будут приняты только первые 5 оценок');
@@ -51,7 +48,7 @@ function getAverageMark(marks){
         sumMark = marks[i] + sumMark;
     }
     
-    averageMark = sumMark / marks.length;
+    let averageMark = sumMark / marks.length;
    
     return averageMark;
 }
