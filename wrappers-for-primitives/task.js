@@ -86,5 +86,19 @@ function sayHello() {
 
 function getGreeting(name) {
     // код для задачи №2 писать здесь
-    //return greeting;
+    let greeting;
+
+    console.log(typeof name);
+
+    if ( typeof name == 'undefined' || name == null || name == '' ) {
+        name = 'Аноним';        
+    }
+    
+    
+    greeting = (`Привет, мир! Меня зовут ${name}.`);
+    console.log(greeting);
+       
+    return greeting;
 }
+
+
