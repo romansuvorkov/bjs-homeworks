@@ -1,4 +1,4 @@
-*******************Задача 1**********************************************
+//*******************Задача 1**********************************************
 function getSolutions( a, b, c ) {
     let D = Math.pow(b, 2) - 4*a*c;
     let output = {};
@@ -40,34 +40,31 @@ showSolutionsMessage( 2, 4, 2 );
 function getAverageScore( data ) {
 
     let output = {};
+    let subjectSum = 0;
     for ( let subject in data ) {
-        let subjectSum = 0;
-        for (let i = 0; i < data[subject].length; i++) {
-            // console.log("Длина" + data[subject].length);
-            subjectSum = data[subject][i] + subjectSum;
-            // console.log("Обращение к цифре массива" + data[subject][i]);
-            // console.log("Сумма в подцикле" + subjectSum);
-        }
-        // console.log("Сумма после выполнения подцикла" + subjectSum);
-        let averageSubjectSum = subjectSum / data[subject].length;
-        output[subject] = averageSubjectSum;
-        // console.log("Средняя оценка по предмету " + subject + ': ' + averageSubjectSum);
+        data[subject] = getAverageSubjectScore(data[subject]);
     }
     
     subjuctNumb = 0;
     subjectSum = 0;
-    for ( let subject in output ) {
+    for ( let subject in data ) {
         subjuctNumb++;
-        subjectSum = output[subject] + subjectSum;
+        subjectSum = data[subject] + subjectSum;
     }
     let average = subjectSum / subjuctNumb;
-    output.average = average;
+    data.average = average;
+    return data;
+}
 
-    // console.log( output );
-    return output;
+function getAverageSubjectScore(arr) {
+    let subjectSum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        subjectSum = arr[i] + subjectSum;
+    }
+    let averageSubjectScore = subjectSum / arr.length;
+    return averageSubjectScore;
 }
     
-
 console.log(getAverageScore({
 algebra: [ 2, 4, 5, 2, 3, 4 ],
 geometry: [ 2, 4, 5 ],
@@ -79,9 +76,6 @@ poetry: [ 5, 3, 4 ],
 chemistry: [ 2 ],
 french: [ 4, 4 ]
 }));
-
-
-
 
 // *******************Задача 3**********************************************
 
