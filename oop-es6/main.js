@@ -174,33 +174,39 @@ class StudentLog {
   }
 
     addGrade(grade, subject) {
-        if (!this.subject) {
-            console.log(subject);
-            this.subject = subject;
-            console.log(this.subject);
-            console.log(this);
-        }
         if (grade !== 1 && grade !== 2 && grade !== 3 && grade !== 4 && grade !== 5) {
             console.log(`Вы пытались поставить оценку "${grade}" по предмету "${subject}". Допускаются только числа от 1 до 5.`);
-            return this.subject.length;
+            if (!this[subject]) {
+              this[subject] = [];
+              return this[subject].length;
+            }
+            return this[subject].length;
         }
 
-        this.subject;
-        console.log(this.subject);
+        if (!this[subject]) {
+            this[subject] = [grade];
+        } else {
+            this[subject].push(grade);
+        }
+        
+        // console.log(this);
+        
 
-        return this.subject.length;
+        return this[subject].length;
     }
 
     getAverageBySubject(subject) {
         let sumMark = 0;
-        for (let i = 0; i < this.subject.length; i++) {
-        sumMark = this.subject[i] + sumMark;
-        console.log(this.subject);
-        console.log(sumMark);
+        let average = 0;
+        if (!this[subject]) {
+            average = 0;
+        } else {
+          for (let i = 0; i < this[subject].length; i++) {
+            sumMark = this[subject][i] + sumMark;
+          }
+          average = sumMark / this[subject].length;
         }
-
-        let average = sumMark / this.subject.length;
-   
+          
         return average;
     }
 
@@ -208,9 +214,14 @@ class StudentLog {
         let marksQuantity = 0;
         let subjectSum = 0;
         for ( let subject in this ) {
-            for (let i = 0; i < this.subject.length; i++) {
-                subjectSum = this.subject[i] + subjectSum;
-                marksQuantity++;
+            if (this[subject] !== this.name) {
+              for (let i = 0; i < this[subject].length; i++) {
+                  // console.log(`Цифра массива ${this[subject][i]}`);
+                  subjectSum = this[subject][i] + subjectSum;
+                  // console.log(`Сумма ${subjectSum}`);
+                  // console.log(`Массив ${this[subject]}`);
+                  marksQuantity++;  
+              }
             }
         }
         let averageSubjectSum = subjectSum / marksQuantity;
@@ -260,5 +271,3 @@ console.log(log.addGrade(5, 'geometry'));
 console.log(log.addGrade(25, 'geometry'));
 // Вы пытались поставить оценку "25" по предмету "geometry". Допускаются только числа от 1 до 5.
 // 1
-
-console.log(log);
