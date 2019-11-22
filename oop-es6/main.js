@@ -25,16 +25,38 @@ class Weapon {
           damage = this.attack;
         } else if (this.durability === 0) {
           damage = 0;
-      } else {
+        } else {
           damage = this.attack / 2;   
-      }
+        }
 
         return damage;
     }
 
     isBroken() {
-      
         return this.durability === 0;
+    }
+
+    repairAndImprove(name, percent) {
+        if (name === 'durability') {
+            
+            if (this.durability === 0) {
+                console.log(`Нельзя восстановить полностью сломанную вещь: ${this.durability}`);
+            }
+
+            this.durability = this.durability * (percent/100 + 1);
+            
+            if (this.durability > this.initialDurability) {
+                this.durability = this.initialDurability;
+            } 
+        }
+
+        if (name === 'range') {
+            this.range = this.range * (percent/100 + 1);
+        }
+
+        if (name === 'attack') {
+            this.attack = this.attack * (percent/100 + 1);
+        }
     }
 
 }
@@ -49,7 +71,19 @@ const axe = new Weapon('Секира', 27, 800, 2);
 const stormStick = new Weapon('Посох Бури', 10, 300, 3);
 
 sword.takeDamage(400);
-console.log(`Проверка получения урона. Урон по sword должен быть 400: ${sword.durability}`);
+console.log(`Проверка получения урона. Урон по sword должен быть 400, остаток 100: ${sword.durability}`);
+
+sword.repairAndImprove('durability', 20);
+console.log(`Проверка восстановления прочности. Durability должен быть 120: ${sword.durability}`);
+
+sword.repairAndImprove('durability', 5000);
+console.log(`Проверка восстановления прочности. Durability должен быть 500: ${sword.durability}`);
+
+sword.repairAndImprove('range', 50);
+console.log(`Проверка улучшения радиуса. Range должен быть 1.5: ${sword.range}`);
+
+sword.takeDamage(400);
+console.log(`Проверка получения урона. Урон по sword должен быть 400, остаток 100: ${sword.durability}`);
 
 sword.getDamage();
 console.log(`Проверка нанесения урона. Урон должен быть 12,5: ${sword.getDamage()}`); 
