@@ -30,8 +30,10 @@ function memoize(fn, limit) {
     }
 
     console.log(`В памяти ответ не найден, ответ раcсчитан функцией`);  
-   
-    return memory.push({arg: args, result: fn(...args)});
+    let functionOutput = fn(...args);
+    memory.push({arg: args, result: functionOutput});
+    return functionOutput;
+    
   }
 
 }
