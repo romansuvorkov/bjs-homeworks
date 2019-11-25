@@ -1,19 +1,13 @@
 function setDailyRhythm(wakeUpTime, bedTime) {
 
-    setInterval(setAlarm, 1000, wakeUpTime, goodMorning());
+    setInterval(setAlarm, 1000, wakeUpTime, goodMorning);
 
-    setInterval(setAlarm, 1000, bedTime, goodNight());
+    setInterval(setAlarm, 1000, bedTime, goodNight);
 
 
 }
 
 function setAlarm(time, callback) {
-    
-    let timeHour = 0;
-    for (i = 0; i < 2; i++) {
-        timeHour = timeHour + time[i];
-    }
-    timeHour = parseInt(timeHour);
     
     let timeMinute = 0;
     for (i = 3; i < 5; i++) {
@@ -24,16 +18,19 @@ function setAlarm(time, callback) {
     let now = new Date();
     let nowHours = now.getHours();
     let nowMinutes = now.getMinutes();
-    
-    if (nowHours == timeHour && nowMinutes == timeMinute) {
-        return callback;
+    let nowTime = nowHours + ':' + nowMinutes;
+    // console.log(nowTime);
+    // console.log(typeof nowTime);
+
+    if (nowTime == time) {
+        return callback();
     }
     
 }
 
 const goodMorning = () => alert('Доброе утро, Вася');
 const goodNight = () => alert('Спокойной ночи, Вася');
-setDailyRhythm('02.00', '02:01');
+setDailyRhythm('20:34', '20:35');
 
 
 
