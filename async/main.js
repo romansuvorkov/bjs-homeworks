@@ -9,12 +9,6 @@ function setDailyRhythm(wakeUpTime, bedTime) {
 
 function setAlarm(time, callback) {
     
-    let timeMinute = 0;
-    for (i = 3; i < 5; i++) {
-        timeMinute = timeMinute + time[i];
-    }
-    timeMinute = parseInt(timeMinute);
-    
     let now = new Date();
     let nowHours = now.getHours();
     let nowMinutes = now.getMinutes();
@@ -30,7 +24,7 @@ function setAlarm(time, callback) {
 
 const goodMorning = () => alert('Доброе утро, Вася');
 const goodNight = () => alert('Спокойной ночи, Вася');
-setDailyRhythm('20:34', '20:35');
+setDailyRhythm('20:38', '20:39');
 
 
 
